@@ -17,45 +17,45 @@
         <header>
             <h1>Tip Calculator</h1>
         </header>
-        <!--Tip Amount Entry Box - START-->
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text">$</span>
+        <section>
+            <!--Tip Amount Entry Box - START-->
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">$</span>
+                </div>
+                <input type="number"
+                       class="form-control"
+                       placeholder="Enter Bill Amount Here"
+                       id="bill_amount">
             </div>
-            <input type="text"
-                   class="form-control"
-                   placeholder="Enter Bill Amount Here"
-                   aria-label="Username"
-                   id="bill_amount"
-                   aria-describedby="basic-addon1">
-        </div>
-        <!--Tip Amount Entry Box - END-->
-        <!--Tip Buttons - START-->
-        <a class="btn btn-primary"
-           href="#"
-           id="percent_10"
-           type="button">10%</a>
-        <button class="btn btn-primary"
-                id='percent_15'
-                type="button">15%</button>
-        <button class="btn btn-primary"
-                id='percent_20'
-                type="button">20%</button>
-        <!--Tip Buttons - END-->
-        <!--Tipping Amount Text - START-->
-        <ta class="text"><br>You are tipping </ta>
-        <!--Tipping Amount Text - END-->
-        <!--List Of Amounts - START-->
-        <ul class="list-group">
-            <li class="list-group-item">Bill Amount: $</li>
-            <li class="list-group-item">Tip Percentage: $</li>
-            <li class="list-group-item">Amount of tip: $</li>
-            <li class="list-group-item"> <i class="font-italic">Total to be Paid: $</i></li>
-        </ul>
-        <!--List Of Amounts - END-->
+            <!--Tip Amount Entry Box - END-->
+            <!--Tip Buttons - START-->
+            <a class="btn btn-primary"
+               href="#"
+               id="percent_10"
+               type="button">10%</a>
+            <button class="btn btn-primary"
+                    id='percent_15'
+                    type="button">15%</button>
+            <button class="btn btn-primary"
+                    id='percent_20'
+                    type="button">20%</button>
+            <!--Tip Buttons - END-->
+            <!--Tipping Amount Text - START-->
+            <ta class="pickedPercent"><br>You are tipping </ta>
+            <!--Tipping Amount Text - END-->
+            <!--List Of Amounts - START-->
+            <ul class="list-group"
+                id="values">
+                <li class="list-group-item billAmt">Bill Amount: $</li>
+                <li class="list-group-item percentPicked">Tip Percentage: $</li>
+                <li class="list-group-item tipAmt">Amount of tip: $</li>
+                <li class="list-group-item"> <i class="font-italic billTotal">Total to be Paid: $</i></li>
+            </ul>
+            <!--List Of Amounts - END-->
+        </section>
     </div>
     <script spec="./utils.ts"></script>
-    <script src="./index.ts"></script>
 </body>
 
 </html>

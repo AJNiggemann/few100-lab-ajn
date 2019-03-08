@@ -5,6 +5,7 @@ tipSelected.forEach(ts => ts.addEventListener('click', processClick));
 
 let selectedTipAmt: number = 0;
 const enteredBillAmount: HTMLInputElement = <HTMLInputElement>document.getElementById('bill_amount');
+const answers = document.getElementById("values");
 
 function processClick() {
     const div = this as HTMLDivElement;
