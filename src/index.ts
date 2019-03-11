@@ -1,13 +1,38 @@
 import './styles.css';
 
 const tipSelected = document.querySelectorAll('.btn');
-const enteredBillAmount: HTMLInputElement = document.querySelector('.form-control');
-
+tipSelected.forEach(ts => ts.classList.add('disabled'));
+const enteredBillAmount: HTMLInputElement = <HTMLInputElement>document.getElementById('bill_amount');
 let selectedTipAmt: number = 0;
 
-tipSelected.forEach(ts => ts.addEventListener('click', processClick));
 enteredBillAmount.addEventListener('keyup', validateCost);
 
+function validateCost() {
+    let billAmount = parseFloat(enteredBillAmount.value);
+    let errorSection: HTMLInputElement = document.querySelector('.errorDisplay');
+    let formBorder: HTMLFormElement = document.querySelector('.sr-only');
+    if (isNaN(billAmount)) {
+        errorSection.innerHTML = 'Invalid, please re-enter the amount of the bill...';
+        formBorder.classList.add('needs-validation');
+        enteredBillAmount.value = "";
+        tipSelected.forEach(ts => ts.classList.add('disabled'));
+        clearDisplay();
+    } else if (billAmount <= 0) {
+        errorSection.innerHTML = 'Bill needs to be more than zero, please re-enter...';
+        formBorder.classList.add('needs-validation');
+        tipSelected.forEach(ts => ts.classList.add('disabled'));
+        enteredBillAmount.value = "";
+        clearDisplay();
+    } else if (billAmount > 0) {
+        errorSection.innerHTML = "";
+        if (selectedTipAmt > 0) {
+            calculateTip(selectedTipAmt);
+        } else {
+            tipSelected.forEach(ts => ts.classList.remove('disabled'));
+            tipSelected.forEach(ts => ts.addEventListener('click', processClick));
+        }
+    }
+}
 function processClick() {
     const button = this as HTMLButtonElement;
     tipSelected.forEach(ts => ts.classList.remove('disabled'));
@@ -26,9 +51,6 @@ function calculateTip(ta: number) {
     let billAmount: number = parseFloat(enteredBillAmount.value);
     let tipAmount: number = billAmount * tipPercent;
     let totalBill: number = billAmount + tipAmount;
-    // console.log(billAmount);
-    // console.log(tipAmount);
-    // console.log(totalBill);
     displayValues(billAmount, tipAmount, totalBill, ta);
 }
 function displayValues(ba: number, ta: number, tb: number, tp: number) {
@@ -43,18 +65,15 @@ function displayValues(ba: number, ta: number, tb: number, tp: number) {
     let totalbill: HTMLLIElement = document.querySelector('.billTotal');
     totalbill.innerHTML = `Total to be Paid: $${tb.toFixed(2)}`;
 }
-function validateCost() {
-    let billAmount = parseFloat(enteredBillAmount.value);
-    let errorSection: HTMLInputElement = document.querySelector('.errorDisplay');
-    let formBorder: HTMLFormElement = document.querySelector('.sr-only');
-    if (isNaN(billAmount)) {
-        errorSection.innerHTML = 'Invalid, please re-enter the amount of the bill...';
-        formBorder.classList.add('needs-validation');
-    } else if (billAmount <= 0) {
-        errorSection.innerHTML = 'Bill needs to be more than zero, please re-enter...';
-        formBorder.classList.add('needs-validation');
-    } else if (billAmount > 0) {
-        errorSection.innerHTML = "";
-        formBorder.classList.remove('needs-validation');
-    }
+function clearDisplay() {
+    let tippercent: HTMLDivElement = document.querySelector('.pickedPercent');
+    tippercent.innerHTML = `You are tipping `;
+    let billamt: HTMLLIElement = document.querySelector('.billAmt');
+    billamt.innerHTML = `Bill Amount $`;
+    let disptip: HTMLLIElement = document.querySelector('.percentPicked');
+    disptip.innerHTML = `Tip Percentage: %`;
+    let tipamt: HTMLLIElement = document.querySelector('.tipAmt');
+    tipamt.innerHTML = `Amount of tip: $`;
+    let totalbill: HTMLLIElement = document.querySelector('.billTotal');
+    totalbill.innerHTML = `Total to be Paid: $`;
 }
