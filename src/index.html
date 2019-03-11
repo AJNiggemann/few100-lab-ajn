@@ -18,16 +18,20 @@
             <h1>Tip Calculator</h1>
         </header>
         <section>
+            <label class="sr-only"
+                   for="bill_amount"></label>
             <!--Tip Amount Entry Box - START-->
-            <div class="input-group mb-3">
+            <div class="input-group mb-1">
                 <div class="input-group-prepend">
                     <span class="input-group-text">$</span>
                 </div>
-                <input type="number"
+                <input type="text"
                        class="form-control"
                        placeholder="Enter Bill Amount Here"
-                       id="bill_amount">
+                       id="bill_amount"
+                       onkeyup="validateCost()">
             </div>
+            <div class="errorDisplay"></div>
             <!--Tip Amount Entry Box - END-->
             <!--Tip Buttons - START-->
             <a class="btn btn-primary"
@@ -42,13 +46,15 @@
                     type="button">20%</button>
             <!--Tip Buttons - END-->
             <!--Tipping Amount Text - START-->
-            <ta class="pickedPercent"><br>You are tipping </ta>
+            <div>
+                <h6 class="pickedPercent">You are tipping </h6>
+            </div>
             <!--Tipping Amount Text - END-->
             <!--List Of Amounts - START-->
             <ul class="list-group"
                 id="values">
                 <li class="list-group-item billAmt">Bill Amount: $</li>
-                <li class="list-group-item percentPicked">Tip Percentage: $</li>
+                <li class="list-group-item percentPicked">Tip Percentage: </li>
                 <li class="list-group-item tipAmt">Amount of tip: $</li>
                 <li class="list-group-item"> <i class="font-italic billTotal">Total to be Paid: $</i></li>
             </ul>
