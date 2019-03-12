@@ -1,7 +1,7 @@
 import './styles.css';
 
 const tipSelected = document.querySelectorAll('.btn');
-tipSelected.forEach(ts => ts.classList.add('disabled'));
+//tipSelected.forEach(ts => ts.classList.add('disabled'));
 const enteredBillAmount: HTMLInputElement = <HTMLInputElement>document.getElementById('bill_amount');
 let selectedTipAmt: number = 0;
 
@@ -13,15 +13,15 @@ function validateCost() {
     let formBorder: HTMLFormElement = document.querySelector('.sr-only');
     if (isNaN(billAmount)) {
         errorSection.innerHTML = 'Invalid, please re-enter the amount of the bill...';
-        formBorder.classList.add('needs-validation');
+        //formBorder.classList.add('needs-validation');
         enteredBillAmount.value = "";
         tipSelected.forEach(ts => ts.classList.add('disabled'));
         clearDisplay();
     } else if (billAmount <= 0) {
         errorSection.innerHTML = 'Bill needs to be more than zero, please re-enter...';
-        formBorder.classList.add('needs-validation');
-        tipSelected.forEach(ts => ts.classList.add('disabled'));
+        //formBorder.classList.add('needs-validation');
         enteredBillAmount.value = "";
+        tipSelected.forEach(ts => ts.classList.add('disabled'));
         clearDisplay();
     } else if (billAmount > 0) {
         errorSection.innerHTML = "";
