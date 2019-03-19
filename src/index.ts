@@ -1,28 +1,21 @@
 import './styles.css';
 
 const tipSelected = document.querySelectorAll('.btn');
-//tipSelected.forEach(ts => ts.classList.add('disabled'));
 const enteredBillAmount: HTMLInputElement = <HTMLInputElement>document.getElementById('bill_amount');
 let selectedTipAmt: number = 0;
-
+let errorSection: HTMLInputElement = document.querySelector('.errorDisplay');
 enteredBillAmount.addEventListener('keyup', validateCost);
 
 function validateCost() {
     let billAmount = parseFloat(enteredBillAmount.value);
-    let errorSection: HTMLInputElement = document.querySelector('.errorDisplay');
-    let formBorder: HTMLFormElement = document.querySelector('.sr-only');
     if (isNaN(billAmount)) {
         errorSection.innerHTML = 'Invalid, please re-enter the amount of the bill...';
-        //formBorder.classList.add('needs-validation');
-        enteredBillAmount.value = "";
-        tipSelected.forEach(ts => ts.classList.add('disabled'));
-        clearDisplay();
+        enteredBillAmount.classList.add('error-input-border');
+        clearValues();
     } else if (billAmount <= 0) {
         errorSection.innerHTML = 'Bill needs to be more than zero, please re-enter...';
-        //formBorder.classList.add('needs-validation');
-        enteredBillAmount.value = "";
-        tipSelected.forEach(ts => ts.classList.add('disabled'));
-        clearDisplay();
+        enteredBillAmount.classList.add('error-input-border');
+        clearValues();
     } else if (billAmount > 0) {
         errorSection.innerHTML = "";
         if (selectedTipAmt > 0) {
@@ -65,7 +58,10 @@ function displayValues(ba: number, ta: number, tb: number, tp: number) {
     let totalbill: HTMLLIElement = document.querySelector('.billTotal');
     totalbill.innerHTML = `Total to be Paid: $${tb.toFixed(2)}`;
 }
-function clearDisplay() {
+function clearValues() {
+    enteredBillAmount.value = "";
+    selectedTipAmt = 0;
+    tipSelected.forEach(ts => ts.classList.add('disabled'));
     let tippercent: HTMLDivElement = document.querySelector('.pickedPercent');
     tippercent.innerHTML = `You are tipping `;
     let billamt: HTMLLIElement = document.querySelector('.billAmt');

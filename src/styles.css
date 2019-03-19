@@ -1,8 +1,20 @@
 h1 {
     font-size: 40px;
-    color:red;
+    color:blue;
     font-family: Arial, Helvetica, sans-serif
+}
+h6{
+    color:rebeccapurple;
 }
 ul{
     margin-top: 10px;
+}
+.errorDisplay{
+    color: red
+}
+input:focus{
+    outline:none;
+}
+.error-input-border{
+    border: 3px solid red;
 }
