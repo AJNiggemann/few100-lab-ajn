@@ -13,7 +13,7 @@ ul{
     color: red
 }
 input:focus{
-    outline:none;
+    outline-style: none;
 }
 .error-input-border{
     border: 3px solid red;

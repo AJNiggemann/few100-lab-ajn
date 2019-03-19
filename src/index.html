@@ -25,12 +25,15 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">$</span>
                 </div>
-                <input type="number"
-                       class="form-control"
-                       min="0.01"
-                       pattern="/^\d+(?:\.\d{0,2})$/"
-                       placeholder="Enter Bill Amount Here"
-                       id="bill_amount" />
+                <div id="error_border">
+                    <input type="text"
+                           class="form-control"
+                           min="0.01"
+                           style="padding: 5px"
+                           pattern="/^\d+(?:\.\d{0,2})$/"
+                           placeholder="Enter Bill Amount Here"
+                           id="bill_amount"></span>
+                </div>
             </div>
             <div class="errorDisplay"
                  class>

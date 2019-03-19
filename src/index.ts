@@ -3,24 +3,33 @@ import './styles.css';
 const tipSelected = document.querySelectorAll('.btn');
 const enteredBillAmount: HTMLInputElement = <HTMLInputElement>document.getElementById('bill_amount');
 let selectedTipAmt: number = 0;
+tipSelected.forEach(ts => ts.classList.add('disabled'));
 let errorSection: HTMLInputElement = document.querySelector('.errorDisplay');
+
 enteredBillAmount.addEventListener('keyup', validateCost);
 
 function validateCost() {
     let billAmount = parseFloat(enteredBillAmount.value);
     if (isNaN(billAmount)) {
         errorSection.innerHTML = 'Invalid, please re-enter the amount of the bill...';
-        enteredBillAmount.classList.add('error-input-border');
+        const errorBorder = document.getElementById('error_border');
+        errorBorder.classList.add('error-input-border');
+        // enteredBillAmount.classList.add('error-input-border');
         clearValues();
     } else if (billAmount <= 0) {
         errorSection.innerHTML = 'Bill needs to be more than zero, please re-enter...';
-        enteredBillAmount.classList.add('error-input-border');
+        const errorBorder = document.getElementById('error_border');
+        errorBorder.classList.add('error-input-border');
         clearValues();
     } else if (billAmount > 0) {
         errorSection.innerHTML = "";
         if (selectedTipAmt > 0) {
+            const errorBorder = document.getElementById('error_border');
+            errorBorder.classList.remove('error-input-border');
             calculateTip(selectedTipAmt);
         } else {
+            const errorBorder = document.getElementById('error_border');
+            errorBorder.classList.remove('error-input-border');
             tipSelected.forEach(ts => ts.classList.remove('disabled'));
             tipSelected.forEach(ts => ts.addEventListener('click', processClick));
         }
