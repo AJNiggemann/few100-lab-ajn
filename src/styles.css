@@ -12,8 +12,8 @@ ul{
 .errorDisplay{
     color: red
 }
-input:focus{
-    outline-style: none;
+.focus{
+    border: solid black;
 }
 .error-input-border{
     border: 3px solid red;

@@ -3,13 +3,14 @@ import './styles.css';
 const tipSelected = document.querySelectorAll('.btn');
 const enteredBillAmount: HTMLInputElement = <HTMLInputElement>document.getElementById('bill_amount');
 let selectedTipAmt: number = 0;
-tipSelected.forEach(ts => ts.classList.add('disabled'));
 let errorSection: HTMLInputElement = document.querySelector('.errorDisplay');
 
+tipSelected.forEach(ts => ts.classList.add('disabled'));
+let billAmount: number = 0;
 enteredBillAmount.addEventListener('keyup', validateCost);
 
 function validateCost() {
-    let billAmount = parseFloat(enteredBillAmount.value);
+    billAmount = parseFloat(enteredBillAmount.value);
     if (isNaN(billAmount)) {
         errorSection.innerHTML = 'Invalid, please re-enter the amount of the bill...';
         const errorBorder = document.getElementById('error_border');
@@ -17,10 +18,12 @@ function validateCost() {
         // enteredBillAmount.classList.add('error-input-border');
         clearValues();
     } else if (billAmount <= 0) {
-        errorSection.innerHTML = 'Bill needs to be more than zero, please re-enter...';
-        const errorBorder = document.getElementById('error_border');
-        errorBorder.classList.add('error-input-border');
-        clearValues();
+        tipSelected.forEach(ts => ts.classList.remove('disabled'));
+        tipSelected.forEach(ts => ts.addEventListener('click', processClick));
+        // errorSection.innerHTML = 'Bill needs to be more than zero, please re-enter...';
+        // const errorBorder = document.getElementById('error_border');
+        // errorBorder.classList.add('error-input-border');
+        // clearValues();
     } else if (billAmount > 0) {
         errorSection.innerHTML = "";
         if (selectedTipAmt > 0) {
@@ -40,13 +43,33 @@ function processClick() {
     tipSelected.forEach(ts => ts.classList.remove('disabled'));
     button.classList.add('disabled');
     if (button.id === 'percent_10') {
-        selectedTipAmt = 10
+        if (billAmount <= 0) {
+            zeroBill();
+        } else {
+            selectedTipAmt = 10,
+                calculateTip(selectedTipAmt)
+        };
     } else if (button.id === 'percent_15') {
-        selectedTipAmt = 15
+        if (billAmount <= 0) {
+            zeroBill();
+        } else {
+            selectedTipAmt = 15,
+                calculateTip(selectedTipAmt)
+        };
     } else {
-        selectedTipAmt = 20
+        if (billAmount <= 0) {
+            zeroBill();
+        } else {
+            selectedTipAmt = 20,
+                calculateTip(selectedTipAmt)
+        };
     }
-    calculateTip(selectedTipAmt);
+}
+function zeroBill() {
+    errorSection.innerHTML = 'Bill needs to be more than zero, please re-enter...';
+    const errorBorder = document.getElementById('error_border');
+    errorBorder.classList.add('error-input-border');
+    clearValues();
 }
 function calculateTip(ta: number) {
     let tipPercent: number = ta / 100;
