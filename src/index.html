@@ -21,19 +21,22 @@
             <label class="sr-only"
                    for="bill_amount"></label>
             <!--Tip Amount Entry Box - START-->
-            <div class="input-group mb-1">
+            <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text">$</span>
+                    <span class="input-group-text"
+                          id="initial_input">$</span>
                 </div>
-                <div id="error_border">
-                    <input type="number"
-                           class="  form-control"
-                           min="0.01"
-                           style="padding: 5px"
-                           pattern="/^\d+(?:\.\d{0,2})$/"
-                           placeholder="Enter Bill Amount Here"
-                           id="bill_amount"></span>
-                </div>
+                <!-- <div id="error_border"> -->
+                <input type="number"
+                       class="form-control"
+                       min="0.01"
+                       style="padding: 5px"
+                       pattern="/^\d+(?:\.\d{0,2})$/"
+                       placeholder="Enter Bill Amount Here"
+                       aria-label="Enter Bill Amount Here"
+                       aria-describedby="initial-input"
+                       id="bill_amount">
+                <!-- </div> -->
             </div>
             <div class="errorDisplay"
                  class>

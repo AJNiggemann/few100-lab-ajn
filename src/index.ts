@@ -2,6 +2,7 @@ import './styles.css';
 
 const tipSelected = document.querySelectorAll('.btn');
 const enteredBillAmount: HTMLInputElement = <HTMLInputElement>document.getElementById('bill_amount');
+let errorBorder = document.getElementById('bill_amount');
 let selectedTipAmt: number = 0;
 let errorSection: HTMLInputElement = document.querySelector('.errorDisplay');
 
@@ -13,25 +14,21 @@ function validateCost() {
     billAmount = parseFloat(enteredBillAmount.value);
     if (isNaN(billAmount)) {
         errorSection.innerHTML = 'Invalid, please re-enter the amount of the bill...';
-        const errorBorder = document.getElementById('error_border');
+        errorBorder = document.getElementById('bill_amount');
         errorBorder.classList.add('error-input-border');
-        // enteredBillAmount.classList.add('error-input-border');
+        errorBorder.click;
         clearValues();
     } else if (billAmount <= 0) {
         tipSelected.forEach(ts => ts.classList.remove('disabled'));
         tipSelected.forEach(ts => ts.addEventListener('click', processClick));
-        // errorSection.innerHTML = 'Bill needs to be more than zero, please re-enter...';
-        // const errorBorder = document.getElementById('error_border');
-        // errorBorder.classList.add('error-input-border');
-        // clearValues();
     } else if (billAmount > 0) {
         errorSection.innerHTML = "";
         if (selectedTipAmt > 0) {
-            const errorBorder = document.getElementById('error_border');
+            errorBorder = document.getElementById('bill_amount');
             errorBorder.classList.remove('error-input-border');
             calculateTip(selectedTipAmt);
         } else {
-            const errorBorder = document.getElementById('error_border');
+            errorBorder = document.getElementById('bill_amount');
             errorBorder.classList.remove('error-input-border');
             tipSelected.forEach(ts => ts.classList.remove('disabled'));
             tipSelected.forEach(ts => ts.addEventListener('click', processClick));
@@ -40,6 +37,7 @@ function validateCost() {
 }
 function processClick() {
     const button = this as HTMLButtonElement;
+    errorBorder.classList.remove('error-input-border');
     tipSelected.forEach(ts => ts.classList.remove('disabled'));
     button.classList.add('disabled');
     if (button.id === 'percent_10') {
@@ -67,7 +65,7 @@ function processClick() {
 }
 function zeroBill() {
     errorSection.innerHTML = 'Bill needs to be more than zero, please re-enter...';
-    const errorBorder = document.getElementById('error_border');
+    errorBorder = document.getElementById('bill_amount');
     errorBorder.classList.add('error-input-border');
     clearValues();
 }
