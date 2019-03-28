@@ -3,21 +3,23 @@ import './styles.css';
 //Initialization of Value
 let enteredBillAmountElmnt: HTMLInputElement = <HTMLInputElement>document.getElementById('bill_amount');
 let errorSectionElmnt: HTMLInputElement = document.querySelector('.errorDisplay');
-let tippercent: HTMLDivElement = document.querySelector('.pickedPercent');
-let billamt: HTMLLIElement = document.querySelector('.billAmt');
-let disptip: HTMLLIElement = document.querySelector('.percentPicked');
-let tipamt: HTMLLIElement = document.querySelector('.tipAmt');
-let totalbill: HTMLLIElement = document.querySelector('.billTotal');
+let tippercentElmnt: HTMLDivElement = document.querySelector('.pickedPercent');
+let billamtElmnt: HTMLLIElement = document.querySelector('.billAmt');
+let disptipElmnt: HTMLLIElement = document.querySelector('.percentPicked');
+let tipamtElmnt: HTMLLIElement = document.querySelector('.tipAmt');
+let totalbillElmnt: HTMLLIElement = document.querySelector('.billTotal');
 let errorBorderElmnt = document.getElementById('bill_amount');
 let tipSelectedBtn = document.querySelectorAll('.btn');
 let selectedTipAmtVal: number = 0;
-let tipPercent: number = 0;
+let tipPercentVal: number = 0;
 let billAmountVal: number = 0;
-let tipAmount: number = 0;
-let totalBill: number = 0;
+let tipAmountVal: number = 0;
+let totalBillVal: number = 0;
 //
+//Initial Functionality
 tipSelectedBtn.forEach(ts => ts.classList.add('disabled'));
 enteredBillAmountElmnt.addEventListener('keyup', validateCost);
+//
 
 function validateCost() {
     billAmountVal = parseFloat(enteredBillAmountElmnt.value);
@@ -79,26 +81,26 @@ function zeroBill() {
     clearValues();
 }
 function calculateTip(ta: number) {
-    tipPercent = ta / 100;
+    tipPercentVal = ta / 100;
     billAmountVal = parseFloat(enteredBillAmountElmnt.value);
-    tipAmount = billAmountVal * tipPercent;
-    totalBill = billAmountVal + tipAmount;
+    tipAmountVal = billAmountVal * tipPercentVal;
+    totalBillVal = billAmountVal + tipAmountVal;
     displayValues();
 }
 function displayValues() {
-    tippercent.innerHTML = `You are tipping ${selectedTipAmtVal}%`;
-    billamt.innerHTML = `Bill Amount $${billAmountVal.toFixed(2)}`;
-    disptip.innerHTML = `Tip Percentage: ${selectedTipAmtVal}%`;
-    tipamt.innerHTML = `Amount of tip: $${tipAmount.toFixed(2)}`;
-    totalbill.innerHTML = `Total to be Paid: $${totalBill.toFixed(2)}`;
+    tippercentElmnt.innerHTML = `You are tipping ${selectedTipAmtVal}%`;
+    billamtElmnt.innerHTML = `Bill Amount $${billAmountVal.toFixed(2)}`;
+    disptipElmnt.innerHTML = `Tip Percentage: ${selectedTipAmtVal}%`;
+    tipamtElmnt.innerHTML = `Amount of tip: $${tipAmountVal.toFixed(2)}`;
+    totalbillElmnt.innerHTML = `Total to be Paid: $${totalBillVal.toFixed(2)}`;
 }
 function clearValues() {
+    tipSelectedBtn.forEach(ts => ts.classList.add('disabled'));
     enteredBillAmountElmnt.value = "";
     selectedTipAmtVal = 0;
-    tipSelectedBtn.forEach(ts => ts.classList.add('disabled'));
-    tippercent.innerHTML = `You are tipping `;
-    billamt.innerHTML = `Bill Amount $`;
-    disptip.innerHTML = `Tip Percentage: %`;
-    tipamt.innerHTML = `Amount of tip: $`;
-    totalbill.innerHTML = `Total to be Paid: $`;
+    tippercentElmnt.innerHTML = ``;
+    billamtElmnt.innerHTML = `Bill Amount $`;
+    disptipElmnt.innerHTML = `Tip Percentage: %`;
+    tipamtElmnt.innerHTML = `Amount of tip: $`;
+    totalbillElmnt.innerHTML = `Total to be Paid: $`;
 }
