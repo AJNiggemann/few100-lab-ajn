@@ -19,42 +19,32 @@
         </header>
         <section>
             <label class="sr-only"
-                   for="bill_amount"></label>
+                   for="bill_amount">
+            </label>
             <!--Tip Amount Entry Box - START-->
-            <div class="input-group mb-3">
+            <div class="input-group mb-1">
                 <div class="input-group-prepend">
                     <span class="input-group-text"
-                          id="initial_input">$</span>
+                          id="initial_input">$
+                    </span>
                 </div>
-                <!-- <div id="error_border"> -->
-                <input type="number"
-                       class="form-control"
-                       min="0.01"
-                       style="padding: 5px"
-                       pattern="/^\d+(?:\.\d{0,2})$/"
+                <input type="number" class="form-control" min="0.01" 
+                       style="padding: 5px" pattern="/^\d+(?:\.\d{0,2})$/"
                        placeholder="Enter Bill Amount Here"
-                       aria-label="Enter Bill Amount Here"
-                       aria-describedby="initial-input"
+                       aria-label="Enter Bill Amount Here" aria-describedby="initial-input"
                        id="bill_amount">
-                <!-- </div> -->
+                </input>
             </div>
+            <!--Tip Amount Entry Box - END-->
+            <!--Error Message Display - START-->
             <div class="errorDisplay"
                  class>
             </div>
-            <!--Tip Amount Entry Box - END-->
+            <!--Error Message Display - END-->
             <!--Tip Buttons - START-->
-            <a class="btn btn-primary"
-               href="#"
-               id="percent_10"
-               type="button">10%</a>
-            <a class="btn btn-primary"
-               href="#"
-               id='percent_15'
-               type="button">15%</a>
-            <a class="btn btn-primary"
-               href="#"
-               id='percent_20'
-               type="button">20%</a>
+            <a class="btn btn-primary" href="#" id="percent_10" type="button">10%</a>
+            <a class="btn btn-primary" href="#" id='percent_15' type="button">15%</a>
+            <a class="btn btn-primary" href="#" id='percent_20' type="button">20%</a>
             <!--Tip Buttons - END-->
             <!--Tipping Amount Text - START-->
             <div>
@@ -62,10 +52,9 @@
             </div>
             <!--Tipping Amount Text - END-->
             <!--List Of Amounts - START-->
-            <ul class="list-group"
-                id="values">
+            <ul class="list-group" id="values">
                 <li class="list-group-item billAmt">Bill Amount: $</li>
-                <li class="list-group-item percentPicked">Tip Percentage: </li>
+                <li class="list-group-item percentPicked">Tip Percentage: %</li>
                 <li class="list-group-item tipAmt">Amount of tip: $</li>
                 <li class="list-group-item"> <i class="font-italic billTotal">Total to be Paid: $</i></li>
             </ul>

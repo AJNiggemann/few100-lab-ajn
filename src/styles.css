@@ -12,18 +12,6 @@ ul{
 .errorDisplay{
     color: red
 }
-.span-input{
-    position: relative;
-}
-.span-input span{
-    position: absolute;
-    left:5px;
-    top:5px;
-}
-.span-input input{
-    padding-left: 40px;
-    line-height: 16px;
-}
 .error-input-border{
     border: 3px solid red;
 }
